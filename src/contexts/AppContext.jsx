@@ -33,7 +33,7 @@ export function AppProvider({ children }) {
 
   // ── Lists ─────────────────────────────────────────────────────────────────
 
-  async function addList(name, accentColor = '#6366f1') {
+  async function addList(name, accentColor = '#E2611E') {
     const position = lists.length
     const { data, error } = await supabase
       .from('lists')

@@ -157,7 +157,7 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
               onClick={() => setPriority(v => !v)}
               className={`flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm border transition-colors ${
                 priority
-                  ? 'bg-red-950 text-red-400 border-red-900'
+                  ? 'border-logo-red text-logo-red bg-logo-red/10'
                   : 'text-tx-muted border-border hover:bg-bg-elevated'
               }`}
             >

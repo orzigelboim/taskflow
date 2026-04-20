@@ -11,7 +11,7 @@ export default function App() {
   if (loading) {
     return (
       <div className="h-full flex items-center justify-center bg-bg-base">
-        <div className="w-6 h-6 border-2 border-tx-muted border-t-indigo-500 rounded-full animate-spin" />
+        <div className="w-6 h-6 border-2 border-tx-muted border-t-logo-gold rounded-full animate-spin" />
       </div>
     )
   }

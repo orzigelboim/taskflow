@@ -20,9 +20,9 @@ import { GripVertical, Pencil, Trash2, Plus, Check, X, Settings as Gear, LogOut 
 import { useApp } from '../contexts/AppContext'
 
 const PALETTE = [
-  '#6366f1', '#8b5cf6', '#a855f7', '#ec4899',
-  '#ef4444', '#f97316', '#eab308', '#22c55e',
-  '#14b8a6', '#06b6d4', '#3b82f6', '#64748b',
+  '#D8131D', '#DD3A1E', '#E2611E', '#EBAF20',
+  '#f59e0b', '#22c55e', '#14b8a6', '#06b6d4',
+  '#3b82f6', '#8b5cf6', '#ec4899', '#64748b',
 ]
 
 function ColorPicker({ value, onChange }) {
@@ -211,7 +211,7 @@ export default function Settings() {
                 }}
                 className="flex-1 bg-bg-card border border-border rounded-xl px-3 py-2.5 text-sm text-tx-primary placeholder-tx-muted outline-none focus:border-tx-muted transition-colors"
               />
-              <button onClick={handleAdd} className="p-2 rounded-lg text-indigo-400 hover:bg-bg-elevated transition-colors">
+              <button onClick={handleAdd} className="p-2 rounded-lg text-logo-gold hover:bg-bg-elevated transition-colors">
                 <Check size={16} />
               </button>
               <button onClick={() => { setAdding(false); setNewName('') }} className="p-2 rounded-lg text-tx-muted hover:bg-bg-elevated transition-colors">

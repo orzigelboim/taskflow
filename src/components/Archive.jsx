@@ -34,7 +34,7 @@ export default function Archive() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-48">
-        <div className="w-5 h-5 border-2 border-tx-muted border-t-indigo-500 rounded-full animate-spin" />
+        <div className="w-5 h-5 border-2 border-tx-muted border-t-logo-gold rounded-full animate-spin" />
       </div>
     )
   }
@@ -87,7 +87,7 @@ export default function Archive() {
                         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100">
                           <button
                             onClick={() => handleUnarchive(task.id)}
-                            className="shrink-0 text-tx-muted hover:text-indigo-400 transition-colors p-1"
+                            className="shrink-0 text-tx-muted hover:text-logo-gold transition-colors p-1"
                             aria-label="Unarchive"
                           >
                             <RotateCcw size={13} />

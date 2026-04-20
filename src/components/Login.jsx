@@ -29,7 +29,7 @@ export default function Login() {
             placeholder="Email"
             value={email}
             onChange={e => setEmail(e.target.value)}
-            className="bg-bg-card border border-border rounded-xl px-4 py-3 text-tx-primary placeholder-tx-muted outline-none focus:border-indigo-500 transition-colors text-sm"
+            className="bg-bg-card border border-border rounded-xl px-4 py-3 text-tx-primary placeholder-tx-muted outline-none focus:border-logo-gold transition-colors text-sm"
           />
           <input
             type="password"
@@ -37,13 +37,14 @@ export default function Login() {
             placeholder="Password"
             value={password}
             onChange={e => setPassword(e.target.value)}
-            className="bg-bg-card border border-border rounded-xl px-4 py-3 text-tx-primary placeholder-tx-muted outline-none focus:border-indigo-500 transition-colors text-sm"
+            className="bg-bg-card border border-border rounded-xl px-4 py-3 text-tx-primary placeholder-tx-muted outline-none focus:border-logo-gold transition-colors text-sm"
           />
           {error && <p className="text-red-400 text-xs px-1">{error}</p>}
           <button
             type="submit"
             disabled={loading}
-            className="bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-3 rounded-xl transition-colors disabled:opacity-50 text-sm"
+            className="text-white font-medium py-3 rounded-xl transition-opacity disabled:opacity-50 text-sm"
+            style={{ background: 'linear-gradient(90deg, #D8131D, #EBAF20)' }}
           >
             {loading ? 'Signing in…' : 'Sign in'}
           </button>

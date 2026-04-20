@@ -15,7 +15,7 @@ export default function Sidebar() {
   return (
     <div className="flex flex-col h-full py-4 gap-1">
       <div className="flex items-center gap-2.5 px-6 pb-4 mb-1 border-b border-border">
-        <CheckSquare size={18} className="text-indigo-400" />
+        <CheckSquare size={18} className="text-logo-gold" />
         <span className="text-tx-primary font-semibold text-sm tracking-wide">TaskFlow</span>
       </div>
 
