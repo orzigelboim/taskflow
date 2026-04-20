@@ -1,8 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
-  <rect width="192" height="192" rx="40" fill="#0f0f0f"/>
-  <rect x="44" y="58" width="104" height="12" rx="6" fill="#6366f1"/>
-  <rect x="44" y="84" width="80" height="12" rx="6" fill="#6366f1" opacity="0.65"/>
-  <rect x="44" y="110" width="60" height="12" rx="6" fill="#6366f1" opacity="0.35"/>
-  <circle cx="148" cy="140" r="22" fill="#6366f1"/>
-  <path d="M140 140 l6 6 l10-12" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none">
+  <defs>
+    <clipPath id="clip0">
+      <rect x="10" y="10" width="172" height="172" rx="34" ry="34" />
+    </clipPath>
+  </defs>
+
+  <g clip-path="url(#clip0)">
+    <rect x="10" y="10" width="172" height="43" fill="#D8131D"/>
+    <rect x="10" y="53" width="172" height="43" fill="#DD3A1E"/>
+    <rect x="10" y="96" width="172" height="43" fill="#E2611E"/>
+    <rect x="10" y="139" width="172" height="43" fill="#EBAF20"/>
+  </g>
+
+  <path d="M49 100 L81 132 L151 62" stroke="#FFFFFF" stroke-width="34" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
