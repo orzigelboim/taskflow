@@ -1,16 +1,17 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { X, ChevronDown, ChevronUp, Calendar, AlignLeft } from 'lucide-react'
+import { X, ChevronDown, ChevronUp, Calendar, AlignLeft, Trash2 } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 
 export default function EditTaskModal({ task, accentColor, onClose }) {
-  const { updateTask } = useApp()
+  const { updateTask, deleteTask } = useApp()
   const [title, setTitle] = useState(task.title)
   const [description, setDescription] = useState(task.description ?? '')
   const [dueDate, setDueDate] = useState(task.due_date ?? '')
   const [showDesc, setShowDesc] = useState(Boolean(task.description))
   const [showDue, setShowDue] = useState(Boolean(task.due_date))
   const [saving, setSaving] = useState(false)
+  const [deleting, setDeleting] = useState(false)
   const [error, setError] = useState('')
   const titleRef = useRef(null)
 
@@ -30,6 +31,12 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
     })
     setSaving(false)
     if (error) { setError(error.message); return }
+    onClose()
+  }
+
+  const handleDelete = async () => {
+    setDeleting(true)
+    await deleteTask(task.id)
     onClose()
   }
 
@@ -143,6 +150,15 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
             </div>
 
             <div className="flex gap-2 pt-1 safe-bottom">
+              <button
+                type="button"
+                onClick={handleDelete}
+                disabled={deleting}
+                className="p-2.5 rounded-xl text-red-400 border border-red-900 hover:bg-red-950 transition-colors disabled:opacity-50"
+                aria-label="Delete task"
+              >
+                <Trash2 size={16} />
+              </button>
               <button
                 type="button"
                 onClick={onClose}

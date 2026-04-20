@@ -129,6 +129,7 @@ export function AppProvider({ children }) {
 
   async function deleteTask(id) {
     const { error } = await supabase.from('tasks').delete().eq('id', id)
+    if (!error) setTasks(prev => prev.filter(t => t.id !== id))
     return { error }
   }
 
