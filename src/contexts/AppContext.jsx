@@ -92,6 +92,30 @@ export function AppProvider({ children }) {
     return { data, error: null }
   }
 
+  async function updateTask(id, updates) {
+    const { data, error } = await supabase
+      .from('tasks')
+      .update(updates)
+      .eq('id', id)
+      .select()
+      .single()
+    if (error) return { error }
+    setTasks(prev => prev.map(t => (t.id === id ? data : t)))
+    return { data, error: null }
+  }
+
+  async function unarchiveTask(id) {
+    const { data, error } = await supabase
+      .from('tasks')
+      .update({ completed_at: null })
+      .eq('id', id)
+      .select()
+      .single()
+    if (error) return { error }
+    setTasks(prev => [...prev, data])
+    return { error: null }
+  }
+
   async function completeTask(id) {
     const completedAt = new Date().toISOString()
     const { error } = await supabase
@@ -146,7 +170,7 @@ export function AppProvider({ children }) {
       value={{
         lists, tasks, loading, error,
         addList, updateList, deleteList, reorderLists,
-        addTask, completeTask, deleteTask, getTasksForList,
+        addTask, updateTask, completeTask, unarchiveTask, deleteTask, getTasksForList,
         loadArchive, clearArchive, deleteArchivedTask,
       }}
     >

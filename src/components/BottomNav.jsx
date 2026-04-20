@@ -23,13 +23,14 @@ export default function BottomNav() {
               <span
                 className="w-1.5 h-1.5 rounded-full transition-all"
                 style={{
-                  backgroundColor: active ? list.accent_color : 'transparent',
+                  backgroundColor: list.accent_color,
+                  opacity: active ? 1 : 0.35,
                   boxShadow: active ? `0 0 6px ${list.accent_color}80` : 'none',
                 }}
               />
               <span
                 className="text-[11px] font-medium truncate max-w-[72px] transition-colors"
-                style={{ color: active ? list.accent_color : '#666' }}
+                style={{ color: active ? list.accent_color : `${list.accent_color}99` }}
               >
                 {list.name}
               </span>

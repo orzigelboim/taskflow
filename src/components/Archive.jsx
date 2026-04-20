@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { format, differenceInDays, parseISO } from 'date-fns'
-import { Trash2, Archive as ArchiveIcon } from 'lucide-react'
+import { Trash2, Archive as ArchiveIcon, RotateCcw } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 
 function daysLeft(completedAt) {
@@ -10,7 +10,7 @@ function daysLeft(completedAt) {
 }
 
 export default function Archive() {
-  const { loadArchive, deleteArchivedTask } = useApp()
+  const { loadArchive, deleteArchivedTask, unarchiveTask } = useApp()
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -23,6 +23,11 @@ export default function Archive() {
 
   const handleDelete = async (id) => {
     await deleteArchivedTask(id)
+    setItems(prev => prev.filter(t => t.id !== id))
+  }
+
+  const handleUnarchive = async (id) => {
+    await unarchiveTask(id)
     setItems(prev => prev.filter(t => t.id !== id))
   }
 
@@ -79,13 +84,22 @@ export default function Archive() {
                         <p className="text-tx-secondary text-sm line-through leading-snug flex-1 min-w-0 truncate">
                           {task.title}
                         </p>
-                        <button
-                          onClick={() => handleDelete(task.id)}
-                          className="shrink-0 text-tx-muted hover:text-red-400 transition-colors p-1 -mr-1 opacity-0 group-hover:opacity-100"
-                          aria-label="Delete"
-                        >
-                          <Trash2 size={13} />
-                        </button>
+                        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100">
+                          <button
+                            onClick={() => handleUnarchive(task.id)}
+                            className="shrink-0 text-tx-muted hover:text-indigo-400 transition-colors p-1"
+                            aria-label="Unarchive"
+                          >
+                            <RotateCcw size={13} />
+                          </button>
+                          <button
+                            onClick={() => handleDelete(task.id)}
+                            className="shrink-0 text-tx-muted hover:text-red-400 transition-colors p-1 -mr-1"
+                            aria-label="Delete"
+                          >
+                            <Trash2 size={13} />
+                          </button>
+                        </div>
                       </div>
 
                       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2">
