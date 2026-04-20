@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/taskflow/',
   build: {
     rollupOptions: {
       output: {
@@ -28,8 +29,8 @@ export default defineConfig({
         background_color: '#0f0f0f',
         display: 'standalone',
         orientation: 'any',
-        scope: '/',
-        start_url: '/',
+        scope: '/taskflow/',
+        start_url: '/taskflow/',
         icons: [
           {
             src: '/icons/icon-192.svg',
