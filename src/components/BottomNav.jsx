@@ -20,12 +20,19 @@ export default function BottomNav() {
               to={`/list/${list.id}`}
               className="flex flex-col items-center justify-center min-w-[60px] px-3 h-full gap-0.5 shrink-0"
             >
-              <span
-                className="text-xs font-bold leading-none min-h-[14px]"
-                style={{ color: list.accent_color, opacity: active ? 1 : 0.45 }}
-              >
-                {count > 0 ? count : ''}
-              </span>
+              {count > 0 ? (
+                <span
+                  className="text-xs font-bold leading-none"
+                  style={{ color: list.accent_color, opacity: active ? 1 : 0.45 }}
+                >
+                  {count}
+                </span>
+              ) : (
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: list.accent_color, opacity: active ? 1 : 0.35 }}
+                />
+              )}
               <span
                 className="text-[11px] font-medium truncate max-w-[72px] transition-colors"
                 style={{ color: active ? list.accent_color : `${list.accent_color}99` }}

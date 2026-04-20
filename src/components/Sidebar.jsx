@@ -27,12 +27,21 @@ export default function Sidebar() {
           const count = tasks.filter(t => t.list_id === list.id).length
           return (
             <NavLink key={list.id} to={`/list/${list.id}`} className={linkClass}>
-              <span
-                className="text-xs font-bold w-4 text-center shrink-0 leading-none"
-                style={{ color: list.accent_color }}
-              >
-                {count > 0 ? count : ''}
-              </span>
+              {count > 0 ? (
+                <span
+                  className="text-xs font-bold w-4 text-center shrink-0 leading-none"
+                  style={{ color: list.accent_color }}
+                >
+                  {count}
+                </span>
+              ) : (
+                <span className="w-4 flex justify-center shrink-0">
+                  <span
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ backgroundColor: list.accent_color }}
+                  />
+                </span>
+              )}
               <span className="truncate">{list.name}</span>
             </NavLink>
           )
