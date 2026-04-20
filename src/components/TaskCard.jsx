@@ -2,11 +2,14 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { format, isToday, isTomorrow, isPast, parseISO } from 'date-fns'
 import { Pencil } from 'lucide-react'
+import { useApp } from '../contexts/AppContext'
 import EditTaskModal from './EditTaskModal'
 
 export default function TaskCard({ task, accentColor, onComplete }) {
+  const { updateTask } = useApp()
   const [completing, setCompleting] = useState(false)
   const [editing, setEditing] = useState(false)
+  const [priority, setPriority] = useState(task.priority ?? false)
 
   const handleComplete = async () => {
     if (completing) return
@@ -14,13 +17,18 @@ export default function TaskCard({ task, accentColor, onComplete }) {
     await onComplete(task.id)
   }
 
+  const handlePriority = async () => {
+    const next = !priority
+    setPriority(next)
+    await updateTask(task.id, { priority: next })
+  }
+
   const formatDue = (dateStr) => {
     if (!dateStr) return null
     const d = parseISO(dateStr)
     if (isToday(d)) return { label: 'Today', overdue: false }
     if (isTomorrow(d)) return { label: 'Tomorrow', overdue: false }
-    const overdue = isPast(d)
-    return { label: format(d, 'MMM d'), overdue }
+    return { label: format(d, 'MMM d'), overdue: isPast(d) }
   }
 
   const due = formatDue(task.due_date)
@@ -63,46 +71,55 @@ export default function TaskCard({ task, accentColor, onComplete }) {
 
         {/* Content */}
         <div className="flex-1 min-w-0 pl-1">
-          <p className="text-tx-primary text-sm leading-snug">{task.title}</p>
+          {/* Title row */}
+          <div className="flex items-center gap-2 flex-wrap">
+            <p className="text-tx-primary text-sm leading-snug">{task.title}</p>
+            {priority && (
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-900 leading-none">
+                P
+              </span>
+            )}
+            {due && (
+              <span
+                className={`text-[10px] font-medium px-1.5 py-0.5 rounded border leading-none ${
+                  due.overdue
+                    ? 'bg-red-950 text-red-400 border-red-900'
+                    : 'bg-bg-elevated text-tx-secondary border-border'
+                }`}
+              >
+                {due.label}
+              </span>
+            )}
+          </div>
 
           {task.description && (
             <p className="text-tx-secondary text-xs mt-1 leading-relaxed line-clamp-2">
               {task.description}
             </p>
           )}
-
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mt-2">
-            {due && (
-              <span
-                className={`text-[11px] flex items-center gap-1 ${
-                  due.overdue ? 'text-red-400' : 'text-tx-secondary'
-                }`}
-              >
-                <svg viewBox="0 0 12 12" className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="1" y="2" width="10" height="9" rx="1.5"/>
-                  <path d="M4 1v2M8 1v2M1 5h10"/>
-                </svg>
-                {due.label}
-              </span>
-            )}
-            <span className="text-[11px] text-tx-muted flex items-center gap-1">
-              <svg viewBox="0 0 12 12" className="w-2.5 h-2.5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="6" cy="6" r="4.5"/>
-                <path d="M6 3.5V6l1.5 1.5"/>
-              </svg>
-              {format(new Date(task.created_at), 'MMM d, h:mm a')}
-            </span>
-          </div>
         </div>
 
-        {/* Edit button */}
-        <button
-          onClick={() => setEditing(true)}
-          className="shrink-0 text-tx-muted hover:text-tx-secondary transition-colors p-1 -mr-1 opacity-100 md:opacity-0 md:group-hover:opacity-100"
-          aria-label="Edit task"
-        >
-          <Pencil size={13} />
-        </button>
+        {/* Actions */}
+        <div className="flex items-center gap-0.5 shrink-0 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={handlePriority}
+            className={`w-6 h-6 rounded flex items-center justify-center text-[11px] font-bold transition-colors ${
+              priority
+                ? 'bg-red-950 text-red-400 border border-red-900'
+                : 'text-tx-muted hover:text-tx-secondary'
+            }`}
+            aria-label="Toggle priority"
+          >
+            P
+          </button>
+          <button
+            onClick={() => setEditing(true)}
+            className="text-tx-muted hover:text-tx-secondary transition-colors p-1"
+            aria-label="Edit task"
+          >
+            <Pencil size={13} />
+          </button>
+        </div>
       </motion.div>
 
       {editing && (
