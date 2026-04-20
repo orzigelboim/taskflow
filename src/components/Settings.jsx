@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { supabase } from '../lib/supabase'
 import {
   DndContext,
   closestCenter,
@@ -15,7 +16,7 @@ import {
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { GripVertical, Pencil, Trash2, Plus, Check, X, Settings as Gear } from 'lucide-react'
+import { GripVertical, Pencil, Trash2, Plus, Check, X, Settings as Gear, LogOut } from 'lucide-react'
 import { useApp } from '../contexts/AppContext'
 
 const PALETTE = [
@@ -226,6 +227,26 @@ export default function Settings() {
               New list
             </button>
           )}
+        </section>
+
+        {/* Account */}
+        <section>
+          <p className="text-xs font-semibold text-tx-muted uppercase tracking-widest mb-3 px-1">
+            Account
+          </p>
+          <div className="bg-bg-card border border-border rounded-xl p-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-tx-primary">Sign out</p>
+              <p className="text-xs text-tx-muted mt-0.5">You'll need to sign in again to access your tasks</p>
+            </div>
+            <button
+              onClick={() => supabase.auth.signOut()}
+              className="flex items-center gap-1.5 text-xs font-medium text-tx-muted border border-border px-3 py-1.5 rounded-lg hover:text-tx-primary hover:border-tx-muted transition-colors"
+            >
+              <LogOut size={13} />
+              Sign out
+            </button>
+          </div>
         </section>
 
         {/* Danger zone */}
