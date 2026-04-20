@@ -20,11 +20,6 @@ export default function TaskList() {
           style={{ backgroundColor: list.accent_color }}
         />
         <h1 className="text-tx-primary text-lg font-semibold">{list.name}</h1>
-        {tasks.length > 0 && (
-          <span className="ml-auto text-xs text-tx-muted bg-bg-elevated px-2 py-0.5 rounded-full">
-            {tasks.length}
-          </span>
-        )}
       </div>
 
       {/* Task cards */}

@@ -8,6 +8,7 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
   const [title, setTitle] = useState(task.title)
   const [description, setDescription] = useState(task.description ?? '')
   const [dueDate, setDueDate] = useState(task.due_date ?? '')
+  const [priority, setPriority] = useState(task.priority ?? false)
   const [showDesc, setShowDesc] = useState(Boolean(task.description))
   const [showDue, setShowDue] = useState(Boolean(task.due_date))
   const [saving, setSaving] = useState(false)
@@ -28,6 +29,7 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
       title: title.trim(),
       description: description.trim() || null,
       due_date: dueDate || null,
+      priority,
     })
     setSaving(false)
     if (error) { setError(error.message); return }
@@ -148,6 +150,20 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
                 )}
               </AnimatePresence>
             </div>
+
+            {/* Priority toggle */}
+            <button
+              type="button"
+              onClick={() => setPriority(v => !v)}
+              className={`flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm border transition-colors ${
+                priority
+                  ? 'bg-red-950 text-red-400 border-red-900'
+                  : 'text-tx-muted border-border hover:bg-bg-elevated'
+              }`}
+            >
+              <span className="font-bold text-base leading-none">P</span>
+              <span>{priority ? 'Priority on' : 'Mark as priority'}</span>
+            </button>
 
             <div className="flex gap-2 pt-1 safe-bottom">
               <button

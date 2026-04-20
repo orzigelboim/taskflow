@@ -1,26 +1,16 @@
 import { useState } from 'react'
 import { format, isToday, isTomorrow, isPast, parseISO } from 'date-fns'
-import { useApp } from '../contexts/AppContext'
 import EditTaskModal from './EditTaskModal'
 
 export default function TaskCard({ task, accentColor, onComplete }) {
-  const { updateTask } = useApp()
   const [completing, setCompleting] = useState(false)
   const [editing, setEditing] = useState(false)
-  const [priority, setPriority] = useState(task.priority ?? false)
 
   const handleComplete = async (e) => {
     e.stopPropagation()
     if (completing) return
     setCompleting(true)
     await onComplete(task.id)
-  }
-
-  const handlePriority = async (e) => {
-    e.stopPropagation()
-    const next = !priority
-    setPriority(next)
-    await updateTask(task.id, { priority: next })
   }
 
   const formatDue = (dateStr) => {
@@ -69,7 +59,7 @@ export default function TaskCard({ task, accentColor, onComplete }) {
         {/* Title + badges */}
         <div className="flex-1 min-w-0 pl-1 flex items-center gap-2 flex-wrap">
           <p className="text-tx-primary text-base leading-snug">{task.title}</p>
-          {priority && (
+          {task.priority && (
             <span className="text-[11px] font-bold px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-900 leading-none">
               P
             </span>
@@ -87,18 +77,6 @@ export default function TaskCard({ task, accentColor, onComplete }) {
           )}
         </div>
 
-        {/* Priority button */}
-        <button
-          onClick={handlePriority}
-          className={`w-7 h-7 shrink-0 rounded flex items-center justify-center text-sm font-bold transition-colors ${
-            priority
-              ? 'bg-red-950 text-red-400 border border-red-900'
-              : 'text-tx-muted hover:text-tx-secondary'
-          }`}
-          aria-label="Toggle priority"
-        >
-          P
-        </button>
       </div>
 
       {editing && (
