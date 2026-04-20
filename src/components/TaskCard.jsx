@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { format, isToday, isTomorrow, isPast, parseISO } from 'date-fns'
 import { useApp } from '../contexts/AppContext'
 import EditTaskModal from './EditTaskModal'
@@ -36,14 +35,10 @@ export default function TaskCard({ task, accentColor, onComplete }) {
 
   return (
     <>
-      <motion.div
-        layout
-        initial={false}
-        animate={{ opacity: completing ? 0.4 : 1, scale: completing ? 0.97 : 1 }}
-        exit={{ opacity: 0, height: 0, marginBottom: 0, paddingTop: 0, paddingBottom: 0 }}
-        transition={{ duration: 0.22, ease: 'easeOut' }}
+      <div
         onClick={() => setEditing(true)}
-        className="relative flex items-center gap-3 px-4 py-3.5 rounded-xl bg-bg-card border border-border overflow-hidden cursor-pointer hover:border-tx-muted/30 transition-colors"
+        style={{ opacity: completing ? 0.4 : 1 }}
+        className="relative flex items-center gap-3 px-4 py-3.5 rounded-xl bg-bg-card border border-border overflow-hidden cursor-pointer hover:border-tx-muted/30 transition-all"
       >
         {/* Accent left strip */}
         <span
@@ -104,7 +99,7 @@ export default function TaskCard({ task, accentColor, onComplete }) {
         >
           P
         </button>
-      </motion.div>
+      </div>
 
       {editing && (
         <EditTaskModal
