@@ -39,7 +39,7 @@ export default function Login() {
             onChange={e => setPassword(e.target.value)}
             className="bg-bg-card border border-border rounded-xl px-4 py-3 text-tx-primary placeholder-tx-muted outline-none focus:border-logo-gold transition-colors text-sm"
           />
-          {error && <p className="text-red-400 text-xs px-1">{error}</p>}
+          {error && <p className="text-logo-red text-xs px-1">{error}</p>}
           <button
             type="submit"
             disabled={loading}

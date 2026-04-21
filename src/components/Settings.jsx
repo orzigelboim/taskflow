@@ -108,7 +108,7 @@ function SortableListItem({ list, onRename, onDelete, onColorChange }) {
         </button>
         <button
           onClick={() => onDelete(list.id)}
-          className="text-tx-muted hover:text-red-400 transition-colors p-1"
+          className="text-tx-muted hover:text-logo-red transition-colors p-1"
         >
           <Trash2 size={13} />
         </button>
@@ -264,7 +264,7 @@ export default function Settings() {
                 <button
                   onClick={handleClearArchive}
                   disabled={clearing}
-                  className="text-xs font-medium text-red-400 border border-red-900 px-3 py-1.5 rounded-lg hover:bg-red-950 transition-colors disabled:opacity-50"
+                  className="text-xs font-medium text-logo-red border border-logo-red/40 px-3 py-1.5 rounded-lg hover:bg-logo-red/10 transition-colors disabled:opacity-50"
                 >
                   {clearing ? 'Clearing…' : 'Confirm'}
                 </button>
@@ -278,7 +278,7 @@ export default function Settings() {
             ) : (
               <button
                 onClick={() => setClearConfirm(true)}
-                className="text-xs font-medium text-red-400 border border-red-900 px-3 py-1.5 rounded-lg hover:bg-red-950 transition-colors"
+                className="text-xs font-medium text-logo-red border border-logo-red/40 px-3 py-1.5 rounded-lg hover:bg-logo-red/10 transition-colors"
               >
                 Clear
               </button>

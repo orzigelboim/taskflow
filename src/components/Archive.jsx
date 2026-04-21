@@ -94,7 +94,7 @@ export default function Archive() {
                           </button>
                           <button
                             onClick={() => handleDelete(task.id)}
-                            className="shrink-0 text-tx-muted hover:text-red-400 transition-colors p-1 -mr-1"
+                            className="shrink-0 text-tx-muted hover:text-logo-red transition-colors p-1 -mr-1"
                             aria-label="Delete"
                           >
                             <Trash2 size={13} />
@@ -118,7 +118,7 @@ export default function Archive() {
                         <span
                           className={`text-[11px] font-medium px-1.5 py-0.5 rounded-full ${
                             urgent
-                              ? 'bg-red-950 text-red-400'
+                              ? 'bg-logo-red/10 text-logo-red'
                               : 'bg-bg-elevated text-tx-muted'
                           }`}
                         >

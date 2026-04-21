@@ -84,7 +84,7 @@ export default function AddTaskModal({ listId, accentColor, onClose }) {
               onChange={e => { setTitle(e.target.value); setError('') }}
               className="w-full bg-transparent text-tx-primary placeholder-tx-muted outline-none text-base py-1"
             />
-            {error && <p className="text-red-400 text-xs -mt-1">{error}</p>}
+            {error && <p className="text-logo-red text-xs -mt-1">{error}</p>}
 
             {/* Description toggle */}
             <div>

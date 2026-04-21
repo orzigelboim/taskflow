@@ -60,7 +60,7 @@ export default function TaskCard({ task, accentColor, onComplete }) {
         <div className="flex-1 min-w-0 pl-1 flex items-center gap-2 flex-wrap">
           <p className="text-tx-primary text-base leading-snug">{task.title}</p>
           {task.priority && (
-            <span className="text-[11px] font-bold px-1.5 py-0.5 rounded bg-red-950 text-red-400 border border-red-900 leading-none">
+            <span className="text-[11px] font-bold px-1.5 py-0.5 rounded bg-logo-red/10 text-logo-red border border-logo-red/40 leading-none">
               P
             </span>
           )}
@@ -68,7 +68,7 @@ export default function TaskCard({ task, accentColor, onComplete }) {
             <span
               className={`text-[11px] font-medium px-1.5 py-0.5 rounded border leading-none ${
                 due.overdue
-                  ? 'bg-red-950 text-red-400 border-red-900'
+                  ? 'bg-logo-red/10 text-logo-red border-logo-red/40'
                   : 'bg-bg-elevated text-tx-secondary border-border'
               }`}
             >

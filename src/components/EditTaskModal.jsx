@@ -87,7 +87,7 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
               onChange={e => { setTitle(e.target.value); setError('') }}
               className="w-full bg-transparent text-tx-primary placeholder-tx-muted outline-none text-base py-1"
             />
-            {error && <p className="text-red-400 text-xs -mt-1">{error}</p>}
+            {error && <p className="text-logo-red text-xs -mt-1">{error}</p>}
 
             <div>
               <button
@@ -157,7 +157,7 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
               onClick={() => setPriority(v => !v)}
               className={`flex items-center gap-2 w-full px-3 py-2.5 rounded-xl text-sm border transition-colors ${
                 priority
-                  ? 'border-logo-red text-logo-red bg-logo-red/10'
+                  ? 'border-logo-red/40 text-logo-red bg-logo-red/10'
                   : 'text-tx-muted border-border hover:bg-bg-elevated'
               }`}
             >
@@ -170,7 +170,7 @@ export default function EditTaskModal({ task, accentColor, onClose }) {
                 type="button"
                 onClick={handleDelete}
                 disabled={deleting}
-                className="p-2.5 rounded-xl text-red-400 border border-red-900 hover:bg-red-950 transition-colors disabled:opacity-50"
+                className="p-2.5 rounded-xl text-logo-red border border-logo-red/40 hover:bg-logo-red/10 transition-colors disabled:opacity-50"
                 aria-label="Delete task"
               >
                 <Trash2 size={16} />

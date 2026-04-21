@@ -5,16 +5,16 @@ export default {
     extend: {
       colors: {
         bg: {
-          base:     '#0E0907',
-          card:     '#160D07',
-          elevated: '#1E1209',
-          overlay:  '#261609',
+          base:     '#FFFFFF',
+          card:     '#FFF8F2',
+          elevated: '#FFF0E4',
+          overlay:  '#FFE8D4',
         },
-        border: '#321A0C',
+        border: '#F0C8A8',
         tx: {
-          primary:   '#F5EAD8',
-          secondary: '#A07850',
-          muted:     '#5E3D24',
+          primary:   '#1A0800',
+          secondary: '#7A3E18',
+          muted:     '#C07840',
         },
         logo: {
           red:    '#D8131D',
